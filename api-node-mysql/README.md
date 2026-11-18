@@ -1,10 +1,11 @@
-# API REST de Usuários
+# API de Cadastro de Usuários
 
-**Projeto de Programação Web III**
+Aluno: Arthur Martins  
+Disciplina: Programação Web III
 
-Este projeto foi desenvolvido como trabalho prático da matéria de Programação Web III. A API permite cadastrar, consultar, atualizar e excluir usuários, utilizando Node.js e MySQL.
+Este projeto foi desenvolvido para a atividade de Programação Web III. A API permite cadastrar usuários, visualizar os registros, alterar informações e excluir usuários utilizando Node.js e MySQL.
 
-## Tecnologias utilizadas
+## O que foi utilizado
 
 - Node.js
 - Express
@@ -13,53 +14,82 @@ Este projeto foi desenvolvido como trabalho prático da matéria de Programaçã
 - dotenv
 - cors
 
-## Como instalar
+## Como executar
 
-Primeiro, abra a pasta do projeto no VS Code e execute no terminal:
+Primeiro, abra a pasta do projeto no VS Code e instale as dependências:
 
 ```bash
 npm install
 ```
 
-## Configuração do banco de dados
+## Configurando o banco de dados
+
+Antes de iniciar a API, é necessário configurar o MySQL.
 
 1. Abra o MySQL Workbench.
-2. Execute o código que está no arquivo `schema.sql`.
-3. Crie uma cópia do arquivo `.env.example` e renomeie para `.env`.
-4. Coloque os dados de acesso do seu banco MySQL no arquivo `.env`.
+2. Execute o arquivo `schema.sql` para criar o banco e a tabela de usuários.
+3. Copie o arquivo `.env.example` e renomeie a cópia para `.env`.
+4. Informe os dados do seu banco MySQL nesse arquivo.
 
-## Como iniciar o projeto
+Exemplo de configuração:
 
-Para iniciar a API, utilize:
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha
+DB_NAME=api_usuarios
+DB_PORT=3306
+```
+
+## Iniciando o servidor
+
+Para iniciar a aplicação:
 
 ```bash
 npm start
 ```
 
-O servidor será iniciado no endereço:
+Também é possível utilizar o modo de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Depois de iniciar, a API estará disponível em:
 
 `http://localhost:3000`
 
-## Rotas da API
+## Rotas
 
-| Método | Rota | Função |
+A API possui quatro operações principais:
+
+| Método | Endereço | Descrição |
 |---|---|---|
-| POST | /usuarios | Cadastrar usuário |
-| GET | /usuarios | Listar usuários |
-| PUT | /usuarios/:id | Atualizar usuário |
-| DELETE | /usuarios/:id | Excluir usuário |
+| POST | `/usuarios` | Adiciona um usuário |
+| GET | `/usuarios` | Mostra os usuários cadastrados |
+| PUT | `/usuarios/:id` | Altera os dados de um usuário |
+| DELETE | `/usuarios/:id` | Remove um usuário |
 
-## Testes
+Para testar as operações, podem ser utilizados o Postman, Insomnia ou Thunder Client.
 
-As rotas podem ser testadas utilizando o Postman, Insomnia ou Thunder Client.
+## Sobre o projeto
 
-## Estrutura do projeto
+Os dados são armazenados em um banco MySQL. As operações são feitas utilizando consultas SQL pelo `mysql2`.
+
+Também foram adicionadas verificações para os dados enviados, tratamento de erros e consultas parametrizadas.
+
+As informações de acesso ao banco ficam no arquivo `.env`, que não deve ser enviado ao GitHub.
+
+## Organização dos arquivos
 
 ```text
 api-node-mysql/
 ├── src/
 │   ├── config/
+│   │   └── db.js
 │   ├── routes/
+│   │   └── usuarios.js
 │   └── server.js
 ├── .env.example
 ├── .gitignore
@@ -67,7 +97,3 @@ api-node-mysql/
 ├── README.md
 └── schema.sql
 ```
-
-**Aluno:** Arthur Martins
-
-**Disciplina:** Programação Web III
